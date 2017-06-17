@@ -25,6 +25,7 @@ void setup() {
   pinMode(PIN_BTN_6, INPUT);
   pinMode(PIN_SW_1, INPUT);
   pinMode(PIN_SW_2, INPUT);
+  pinMode(PIN_SW_3, INPUT);
 
   Serial.begin(9600);
 
@@ -36,6 +37,7 @@ void setup() {
   b6.setup(PIN_BTN_6,6);
   sw1.setup(PIN_SW_1,7);
   sw2.setup(PIN_SW_2,8);
+  sw3.setup(PIN_SW_3,9);
 }
 
 void loop() {
@@ -54,14 +56,16 @@ void loop() {
  */
   sw1.loop();
   sw2.loop();
+
+/* Push-pull switch - breaks
+ * Push = 1 button click
+ * Pull = 1 butotn click
+ * This is basically the same as a switch so....
+ */ 
+  sw3.loop();
   
 }
 
-
-/* Push-pull switch   - kočnica
- * Push = 1 button click
- * Pull = 1 butotn click
- */
 
 /* Ignition key
  * 0->1     battery - 1 button click
@@ -70,17 +74,17 @@ void loop() {
  */
 
 /* Light - two buttons
- * 0->1  pozicija (L)
- * 1->2  kratka (L)
- * 2->3  duga (K)
- * 3->2  kratka (K)
- * 2->1  pozicija (LL)
- * 1->0  ugaseno (Ll)
+ * 0->1  position lights (L)
+ * 1->2  short (L)
+ * 2->3  long (K)
+ * 3->2  short (K)
+ * 2->1  position lights (LL)
+ * 1->0  off (Ll)
  */
 
 /* Rain wipers - one button
- * 0->1: jedan klik
- * 1->2: jedan klik
- * 2->1: dva klika
- * 1->0: dva klika
+ * 0->1: 1 button click
+ * 1->2: 1 button click
+ * 2->1: 2 butoon clicks
+ * 1->0: 2 button clicks
  */

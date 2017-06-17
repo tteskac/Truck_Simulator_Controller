@@ -21,6 +21,7 @@ void Switch::loop(){
         _switchState = reading;
 
         /*
+         * Switch logic is a button push and release on any state change
          */
 
         //PRESS
