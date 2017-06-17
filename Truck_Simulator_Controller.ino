@@ -3,6 +3,7 @@
 #include "Switch.h";
 #include "IgnitionKey.h";
 #include "LightRotarySwitch.h";
+#include "RainWipersRotarySwitch.h";
 
 const int PIN_BTN_1 = 2;
 const int PIN_BTN_2 = 3;
@@ -24,11 +25,16 @@ const int PIN_LIGHT_2 = 15;
 const int PIN_LIGHT_3 = 16;
 const int PIN_LIGHT_4 = 17;
 
+const int PIN_WIPERS_1 = 18;
+const int PIN_WIPERS_2 = 19;
+const int PIN_WIPERS_3 = 20;
+
 //Object initialization
 Button b1,b2,b3,b4,b5,b6;
 Switch sw1,sw2,sw3;
 IgnitionKey key1;
 LightRotarySwitch light1;
+RainWipersRotarySwitch wipers1;
 
 void setup() {
   pinMode(PIN_BTN_1, INPUT);
@@ -47,6 +53,9 @@ void setup() {
   pinMode(PIN_LIGHT_2, INPUT);
   pinMode(PIN_LIGHT_3, INPUT);
   pinMode(PIN_LIGHT_4, INPUT);
+  pinMode(PIN_WIPERS_1, INPUT);
+  pinMode(PIN_WIPERS_2, INPUT);
+  pinMode(PIN_WIPERS_3, INPUT);
 
   Serial.begin(9600);
 
@@ -61,6 +70,7 @@ void setup() {
   sw3.setup(PIN_SW_3, 9);
   key1.setup(PIN_KEY_1, PIN_KEY_2, PIN_KEY_3, 10);
   light1.setup(PIN_LIGHT_1, PIN_LIGHT_2, PIN_LIGHT_3, PIN_LIGHT_4, 11, 12);
+  wipers1.setup(PIN_WIPERS_1, PIN_WIPERS_2, PIN_WIPERS_3, 13);
 }
 
 void loop() {
@@ -104,13 +114,13 @@ void loop() {
  */
   light1.loop();
 
-}
-
-
-
 /* Rain wipers - one button
  * 0->1: 1 button click
  * 1->2: 1 button click
  * 2->1: 2 butoon clicks
  * 1->0: 2 button clicks
  */
+ wipers1.loop();
+
+}
+
