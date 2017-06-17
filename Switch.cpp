@@ -1,9 +1,9 @@
 
 #include "Switch.h"
 
-void Switch::setup(int switchPin, int switchNumber){
+void Switch::setup(int switchPin, int joyButton){
   this->_switchPin = switchPin;
-  this->_switchNumber = switchNumber;
+  this->_joyButton = joyButton;
 }
 
 void Switch::loop(){
@@ -26,7 +26,7 @@ void Switch::loop(){
 
         //PRESS
         String cmd = ":BTN,";
-        cmd += _switchNumber; 
+        cmd += _joyButton; 
         cmd += ",";
         cmd += PRESS;
         cmd += ";";
@@ -37,7 +37,7 @@ void Switch::loop(){
 
         //RELEASE
         cmd = ":BTN,";
-        cmd += _switchNumber; 
+        cmd += _joyButton; 
         cmd += ",";
         cmd += RELEASE;
         cmd += ";";

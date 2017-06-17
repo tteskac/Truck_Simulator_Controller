@@ -5,19 +5,17 @@ void IgnitionKey::setup(
     int ignitionKeyPin1, 
     int ignitionKeyPin2, 
     int ignitionKeyPin3, 
-    int ignitionKeyNumber){
+    int joyButton){
   this->_ignitionKeyPin1 = ignitionKeyPin1;
   this->_ignitionKeyPin2 = ignitionKeyPin2;
   this->_ignitionKeyPin3 = ignitionKeyPin3;
-  this->_ignitionKeyNumber = ignitionKeyNumber;
+  this->_joyButton = joyButton;
 }
 
 void IgnitionKey::loop(){
     
     //If setup() is not called
     if(_ignitionKeyPin1 == NULL) return; 
-    if(_ignitionKeyPin2 == NULL) return;
-    if(_ignitionKeyPin3 == NULL) return;
 
     /* This will return 1, 2 or 3 if the wiring is ok */
     int reading = 
@@ -39,36 +37,36 @@ void IgnitionKey::loop(){
 
         //BATTERY CONTACT
         if(_lastIgnitionKeyState == 1 && _ignitionKeyState == 2 && _ignitionOn == false){
-          btnEvent(_ignitionKeyNumber, PRESS);
+          btnEvent(_joyButton, PRESS);
           delay(50);
-          btnEvent(_ignitionKeyNumber, RELEASE);
+          btnEvent(_joyButton, RELEASE);
         }
 
         //IGNITION
         else if(_lastIgnitionKeyState == 2 && _ignitionKeyState == 3 && _ignitionOn == false){
-          btnEvent(_ignitionKeyNumber, PRESS);
+          btnEvent(_joyButton, PRESS);
           delay(50);
-          btnEvent(_ignitionKeyNumber, RELEASE);
+          btnEvent(_joyButton, RELEASE);
           _ignitionOn == true;
         }
 
         //TURN OFF
         else if(_lastIgnitionKeyState == 2 && _ignitionKeyState == 1 && _ignitionOn == true){
-          btnEvent(_ignitionKeyNumber, PRESS);
+          btnEvent(_joyButton, PRESS);
           delay(50);
-          btnEvent(_ignitionKeyNumber, RELEASE);
+          btnEvent(_joyButton, RELEASE);
           _ignitionOn == false;
         }
 
         //TURN OFF CONTACT
         else if(_lastIgnitionKeyState == 2 && _ignitionKeyState == 1 && _ignitionOn == false){
-          btnEvent(_ignitionKeyNumber, PRESS);
+          btnEvent(_joyButton, PRESS);
           delay(50);
-          btnEvent(_ignitionKeyNumber, RELEASE);
+          btnEvent(_joyButton, RELEASE);
           delay(50);
-          btnEvent(_ignitionKeyNumber, PRESS);
+          btnEvent(_joyButton, PRESS);
           delay(50);
-          btnEvent(_ignitionKeyNumber, RELEASE);
+          btnEvent(_joyButton, RELEASE);
         }
 
         //OTHER COMBINATIONS ARE INVALID

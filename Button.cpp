@@ -1,9 +1,9 @@
 
 #include "Button.h"
 
-void Button::setup(int buttonPin, int buttonNumber){
+void Button::setup(int buttonPin, int joyButton){
   this->_buttonPin = buttonPin;
-  this->_buttonNumber = buttonNumber;
+  this->_joyButton = joyButton;
 }
 
 void Button::loop(){
@@ -21,7 +21,7 @@ void Button::loop(){
         _buttonState = reading;
 
         String cmd = ":BTN,";
-        cmd += _buttonNumber; 
+        cmd += _joyButton; 
         cmd += ",";
         cmd += _buttonState;
         cmd += ";";
